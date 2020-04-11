@@ -96,103 +96,249 @@ public class Main{
     
     private float calculateValue(int direction, int row, int column, float nowState[][]){
         float result = 0;
-        if(direction==0){
-            if(row==0){
-                if(column==0){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
-                }
-                else if(column==(gridNum-1)){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
-                }
-            }
-            else{
-                if(column==0){
-                    result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
-                }
-                else if(column==(gridNum-1)){
-                    result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
-                }
-            }
-        }
-        else if(direction==1){
-            if(column==0){
+        if(noise.length==3){
+            if(direction==0){
                 if(row==0){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];  
+                    if(column==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
+                    }
+                }
+                else{
+                    if(column==0){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2];
+                    }
+                }
+            }
+            else if(direction==1){
+                if(column==0){
+                    if(row==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];  
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                }
+                else{
+                    if(row==0){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                }
+            }
+            else if(direction==2){
+                if(row==(gridNum-1)){
+                    if(column==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    }
+                }
+                else{
+                    if(column==0){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    }
+                }
+            }
+            else if(direction==3){
+                if(column==(gridNum-1)){
+                    if(row==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                }
+                else{
+                    if(row==0){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                    else{
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    }
+                }
+            }
+            }
+        if(noise.length==4){
+            if(direction==0){
+                if(row==0){
+                    if(column==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
                 }
                 else if(row==(gridNum-1)){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    if(column==0){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
                 }
                 else{
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
+                    if(column==0){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row-1][column]*gamma*noise[0]+nowState[row][column-1]*gamma*noise[1]+nowState[row][column+1]*gamma*noise[2]+nowState[row+1][column]*gamma*noise[3];
+                    }
                 }
             }
-            else{
-                if(row==0){
-                    result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
-                }
-                else if(row==(gridNum-1)){
-                    result=nowState[row][column-1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-            }
-        }
-        else if(direction==2){
-            if(row==(gridNum-1)){
+            else if(direction==1){
                 if(column==0){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+                    if(row==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
                 }
                 else if(column==(gridNum-1)){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    if(row==0){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
                 }
                 else{
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
+                    if(row==0){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column-1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2]+nowState[row][column+1]*gamma*noise[3];
+                    }
                 }
             }
-            else{
-                if(column==0){
-                    result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
+            else if(direction==2){
+                if(row==(gridNum-1)){
+                    if(column==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
                 }
-                else if(column==(gridNum-1)){
-                    result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2];
-                }
-            }
-        }
-        else if(direction==3){
-            if(column==(gridNum-1)){
-                if(row==0){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
-                }
-                else if(row==(gridNum-1)){
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row][column]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-            }
-            else{
-                if(row==0){
-                    result=nowState[row][column+1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2];
-                }
-                else if(row==(gridNum-1)){
-                    result=nowState[row][column+1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-                else{
-                    result=nowState[row][column+1]*gamma*noise[0]+nowState[row+1][column]*gamma*noise[1]+nowState[row-1][column]*gamma*noise[2];
-                }
-            }
-        }
+                else if(row==0){
+                    if(column==0){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
 
+                }
+                else{
+                    if(column==0){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
+                    else if(column==(gridNum-1)){
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row+1][column]*gamma*noise[0]+nowState[row][column+1]*gamma*noise[1]+nowState[row][column-1]*gamma*noise[2]+nowState[row-1][column]*gamma*noise[3];
+                    }
+                }
+            }
+            else if(direction==3){
+                if(column==(gridNum-1)){
+                    if(row==0){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                }
+                else if(column==0){
+                    if(row==0){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column]*gamma*noise[3];
+                    }
+                }
+                else{
+                    if(row==0){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                    else if(row==(gridNum-1)){
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                    else{
+                        result=nowState[row][column+1]*gamma*noise[0]+nowState[row-1][column]*gamma*noise[1]+nowState[row+1][column]*gamma*noise[2]+nowState[row][column-1]*gamma*noise[3];
+                    }
+                }
+            }
+            
+            
+        }
         return result;
     }
 
@@ -299,10 +445,9 @@ public class Main{
                     if(bestDir!=PIDir[row][column]){
                         PIDir[row][column]=bestDir;
                         noDirectionChange=false;
-                    }
+                    }  
                 }
             }
-
             boolean noChange = false;
             while(!noChange){
                 noChange=true;
@@ -318,8 +463,9 @@ public class Main{
                         }
                     }
                 }  
-            }   
+            } 
         }
+
         long endTime=System.nanoTime();
         System.out.println("-----------------Policy iteration-----------------");
         System.out.println("Cost time:"+ (endTime-startTime)+"ns");
@@ -330,7 +476,6 @@ public class Main{
             }
             System.out.println();
         }
-
     }
 
     public static void main(String[] args) {
